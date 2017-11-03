@@ -1,0 +1,58 @@
+<div class="container">
+	<form class="form container" id="form1" ng-submit>
+			<div class="field col sm-6">
+				<label>
+					Nome*
+			        <input ng-blur name="name" type="text" class="validate" data-validate-error="" data-validate-type=""  ng-model="frm.nome" placeholder="Nome" id="nome" />
+				</label>
+			</div>
+			<div class="field col sm-6">
+				<label>
+					Preço*
+			        <input name="preco"  class="validate" data-validate-error="" data-validate-type="" type="text" ng-model="frm.preco"  placeholder="Preço" id="preco" />
+				</label>
+			</div>
+			<div class="field col sm-6">
+				<label>
+					Categoria*
+					<select name="tipo" class="validate" ng-model="frm.tipo"  placeholder="Categorias" id="tipo">
+						<option selected="" value="">
+							&nbsp;
+						</option>
+						<option value="acao">
+							Ação
+						</option>
+						<option value="comedia">
+							Comédia
+						</option>
+						<option value="terror">
+							Terror
+						</option>
+						<option value="romance">
+							Romance
+						</option>
+					</select>
+				</label>
+			</div>
+			<br/>
+			<div class="field col sm-6">
+				<img style="width: 180px; height:150px; text-align: center;" ng-src="{{photo}}" />
+			</div>
+			<div class="field col sm-6">
+				<label>
+					<br/>
+					 <input type="file" name="file" my-directive-file="frm.file" onchange="angular.element(this).scope().previewPhoto(event)" />
+			        <!--<input name="Imagem" type="file" class="validate" data-validate-error="" data-validate-type="" ng-model="frm.img"  placeholder="Imagem" id="img" />-->
+				</label>
+			</div>
+		<output name="result"></output>
+		<br/>
+		<div class="col sm-12">
+			<input type="submit" class="button primary" ng-click="submit()" />
+		</div>
+	</form>
+
+</div>
+
+
+

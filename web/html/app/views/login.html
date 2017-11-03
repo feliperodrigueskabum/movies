@@ -1,0 +1,19 @@
+<div ng-controller="loginCtrl">
+	<form class="form container" role="form" name="formLogin" id="myLogin">
+		<div class="field col sm-6">
+			<label>
+				Login
+		        <input type="text" class="validate"  ng-model="form.login" placeholder="Login" id="lgNome" />
+			</label>
+		</div>
+		<div class="field col sm-6">
+			<label>
+				Senha
+		        <input class="validate" type="password" ng-model="form.senha"  placeholder="Senha" id="lgSenha" />
+			</label>
+		</div>
+		<br/>
+		<button type="submit" ng-click="loginSubmit(form)" class="button primary" ng-disabled="formLogin.$invalid">Entrar</button>
+		<p>{{msg}}</p>
+	</form>
+</div>

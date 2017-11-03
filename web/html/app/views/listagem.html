@@ -1,0 +1,178 @@
+<div style="padding-top:80px; height:700px;">
+  
+<!-- BLOCO DO CADASTRO -->
+  <div style="width:50%; float:left;">
+    <form class="form container" id="form1" ng-submit>
+       
+
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Nome</label>
+         <input name="nome"  class="validate" data-validate-error="" data-validate-type="" type="text" ng-model="frm.filme_nome"  id="nome" />
+        </md-input-container>
+        <br>
+
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label> Preço*</label>
+          <input name="preco"  class="validate" data-validate-error="" data-validate-type="" type="text" ng-model="frm.filme_preco"  id="preco" />        
+        </md-input-container>
+        <br>
+        
+       <!-- <div class="field col sm-6">
+          <label>
+            Categoria*
+            <select name="tipo" class="validate" ng-model="frm.filme_tipo"  placeholder="Categorias" id="tipo">
+              <option selected="" value="">
+                &nbsp;
+              </option>
+              <option value="acao">
+                Ação
+              </option>
+              <option value="comedia">
+                Comédia
+              </option>
+              <option value="terror">
+                Terror
+              </option>
+              <option value="romance">
+                Romance
+              </option>
+            </select>
+          </label>
+        </div>
+        <br/> -->
+
+         <md-input-container class="md-block" flex-gt-sm>
+            <label>Categoria*</label>
+            <md-select ng-model="frm.filme_tipo" id="tipo">
+              <md-option selected="" value="">
+              </md-option>
+              <md-option  value="acao">
+               Ação
+              </md-option>
+              <md-option value="comedia">
+              Comédia
+              </md-option>
+              <md-option  value="terror">
+              Terror
+              </md-option>
+              <md-option  value="romance">
+              Romance
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+
+        <div class="field col sm-6" ng-show="carregarFoto">
+          <img style="width: 180px; height:150px; text-align: center;" ng-src="{{photo}}" />
+        </div>
+        <div class="field col sm-6">
+          <label>
+            <br/>
+             <input type="file" name="file" my-directive-file="frm.filme_img" onchange="angular.element(this).scope().previewPhoto(event)" />
+                <!--<input name="Imagem" type="file" class="validate" data-validate-error="" data-validate-type="" ng-model="frm.img"  placeholder="Imagem" id="img" />-->
+          </label>
+        </div>
+      <output name="result"></output>
+      <br/>
+       <input name="filme_id" type="hidden" ng-model="frm.filme_id" id="filme_id" />
+      <div class="col sm-12">
+        <md-button style="margin: 0;margin-top: 8px;" class="md-raised md-primary" ng-click="submit()">{{cadEdi}}</md-button>
+      </div>
+    </form>
+  </div>
+
+  <!-- BLOCO DA LISTAGEM -->
+ <div style="width:50%; float:left; overflow:scroll; height:700px; padding-left: 50px;box-shadow: 0 13px 33px rgba(12, 12, 12, 0.02);">
+  
+  <!-- Batman -->
+    <div class="card u-clearfix" ng-repeat="movie in movies" ng-cloak>
+
+      <div class="card-media">
+        <img ng-src="{{movie.filme_img}}" alt="" class="card-media-img" />
+        <div class="card-media-preview u-flex-center">
+          <svg fill="#ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </div>
+        <span class="card-media-tag card-media-tag-orange">{{movie.filme_tipo}}</span>
+      </div>
+      
+      <div class="card-body">
+        <h2 class="card-body-heading">{{movie.filme_nome}}</h2>
+        <div class="card-body-options">
+          <div class="card-body-option card-body-option-favorite">
+             <svg fill="#9C948A" height="26" viewBox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg">
+               <path d="M0 0h24v24H0z" fill="none"/>
+               <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>
+            </svg>
+          </div>
+          <div class="card-body-option card-body-option-share">
+            <svg fill="#9C948A" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+            </svg>
+          </div>
+          <div class="card-body-option card-body-option-share" ng-click="edit(movie)">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 336.945 336.945" style="enable-background:new 0 0 336.945 336.945;" width="23px" height="23px" xml:space="preserve" width="512px" height="512px">
+              <g>
+                <g>
+                  <g>
+                    <path d="M51.478,80.57h170.667c4.143,0,7.5-3.357,7.5-7.5s-3.357-7.5-7.5-7.5H51.478c-4.142,0-7.5,3.357-7.5,7.5     S47.336,80.57,51.478,80.57z" fill="#9c948a"/>
+                    <path d="M51.478,112.914h189.334c4.143,0,7.5-3.357,7.5-7.5s-3.357-7.5-7.5-7.5H51.478c-4.142,0-7.5,3.357-7.5,7.5     S47.336,112.914,51.478,112.914z" fill="#9c948a"/>
+                    <path d="M324.624,121.053c-9.939-9.938-25.9-10.268-36.242-0.994V7.5c0-4.143-3.357-7.5-7.5-7.5H12.109     c-4.142,0-7.5,3.357-7.5,7.5v321.945c0,4.143,3.358,7.5,7.5,7.5h268.772c4.143,0,7.5-3.357,7.5-7.5V194.59l36.119-36.119     c0.02-0.02,0.035-0.041,0.054-0.06c0.023-0.022,0.048-0.041,0.07-0.063C334.906,148.065,334.906,131.335,324.624,121.053z      M19.609,321.945V15h253.772v120l-28.69,28.691c-1.133-0.688-2.457-1.09-3.879-1.09H51.478c-4.142,0-7.5,3.357-7.5,7.5     s3.358,7.5,7.5,7.5H230.78l-17.344,17.344H51.478c-4.142,0-7.5,3.357-7.5,7.5s3.358,7.5,7.5,7.5h146.958l-17.344,17.344H51.478     c-4.142,0-7.5,3.357-7.5,7.5s3.358,7.5,7.5,7.5h114.615l-13.797,13.797c-0.203,0.203-0.388,0.416-0.563,0.635     c-0.045,0.058-0.086,0.119-0.13,0.178c-0.129,0.172-0.252,0.347-0.364,0.527c-0.042,0.067-0.082,0.137-0.122,0.206     c-0.109,0.187-0.208,0.378-0.3,0.571c-0.019,0.041-0.043,0.077-0.062,0.118l-1.226,2.735c-1.234-0.893-2.746-1.424-4.384-1.424     H51.478c-4.142,0-7.5,3.357-7.5,7.5s3.358,7.5,7.5,7.5h91.965l-9.657,21.539c-0.173,0.387-0.305,0.783-0.409,1.184     c-1.959,4.168-1.232,9.297,2.206,12.734c2.123,2.124,4.945,3.293,7.949,3.293c1.705,0,3.346-0.389,4.84-1.104     c0.382-0.103,0.761-0.226,1.129-0.391l37.853-16.968c0.039-0.018,0.074-0.041,0.112-0.06c0.198-0.092,0.393-0.193,0.583-0.305     c0.066-0.038,0.132-0.076,0.196-0.116c0.187-0.116,0.368-0.242,0.546-0.376c0.052-0.04,0.107-0.076,0.159-0.117     c0.221-0.176,0.436-0.362,0.64-0.566l83.791-83.791v112.357H19.609z M171.287,285.685l-19.569,8.772     c-0.082-0.087-0.154-0.179-0.238-0.264c-0.084-0.084-0.175-0.156-0.261-0.237l8.773-19.567L171.287,285.685z M184.287,277.471     l-16.081-16.081L292.51,137.086l16.081,16.081L184.287,277.471z M317.297,140.659l-12.278-12.278     c3.223-0.271,6.538,0.818,8.999,3.279C316.479,134.12,317.567,137.437,317.297,140.659z" fill="#9c948a"/>
+                    <path d="M51.478,145.258h160c4.143,0,7.5-3.357,7.5-7.5s-3.357-7.5-7.5-7.5h-160c-4.142,0-7.5,3.357-7.5,7.5     S47.336,145.258,51.478,145.258z" fill="#9c948a"/>
+                  </g>
+                </g>
+              </g>
+            </svg>
+        </div>
+
+        </div>
+        <ul class="card-body-stars u-clearfix">
+          <li>
+            <svg fill="#D3BCA2" height="28" viewBox="0 0 18 18" width="28" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>
+              <path d="M0 0h18v18H0z" fill="none"/>
+            </svg>
+          </li>
+          <li>
+            <svg fill="#D3BCA2" height="28" viewBox="0 0 18 18" width="28" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>
+              <path d="M0 0h18v18H0z" fill="none"/>
+            </svg>
+          </li>
+          <li>
+            <svg fill="#D3BCA2" height="28" viewBox="0 0 18 18" width="28" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>
+              <path d="M0 0h18v18H0z" fill="none"/>
+            </svg>
+          </li>
+          <li>
+            <svg fill="#D3BCA2" height="28" viewBox="0 0 18 18" width="28" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>
+              <path d="M0 0h18v18H0z" fill="none"/>
+            </svg>
+          </li>
+          <li>
+            <svg fill="#D3BCA2" height="28" viewBox="0 0 18 18" width="28" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/>
+              <path d="M0 0h18v18H0z" fill="none"/>
+            </svg>
+          </li>
+        </ul>
+        <a href="#/" class="card-button card-button-cta">
+          Comprar {{movie.filme_preco}}
+        </a>
+        <a href="#/" class="card-button card-button-link">
+          Ver mais >
+        </a>
+        <md-switch ng-model="movie.status" aria-label="Switch $index" style="float:right;" ng-click="excluir(movie.filme_id, $index, movie.status)">
+        </md-switch>
+      </div>
+      
+    </div>
+  </div>
+</div>
