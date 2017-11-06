@@ -9,7 +9,8 @@ RUN \
     yum install perl-XML-Simple.noarch -y && \
     yum install cpanminus -y && \
     cpanm CGI && \
-    cpanm Redis::hiredis
+    cpanm Redis::hiredis && \
+    rm -rf /etc/apache2/sites-enabled/000-default.conf
 
 #COPY httpd.conf /etc/httpd/conf/
 

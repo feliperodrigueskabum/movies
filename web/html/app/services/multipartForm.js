@@ -3,7 +3,7 @@ app.factory('multipartForm', ['$http','$rootScope','$location', function($http,$
 		uploadData : function(data, callback){
 		  var request = $http({
 			method: 'POST',
-			url:'cgi-local/cadastrar.cgi',
+			url:'../cgi-local/cadastrar.cgi',
 			data: data,
 			transformRequest: angular.identity,
 			headers: {

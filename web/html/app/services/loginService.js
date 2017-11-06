@@ -2,7 +2,7 @@
 app.factory('loginService',function($http,$location,sessionService){
 	return{
 		login:function(form,scope){
-			var $promise=$http.post('cgi-local/login.cgi',form);
+			var $promise=$http.post('../cgi-local/login.cgi',form);
 			$promise.then(function(response){
 				var valido = response.data.valido;
 				var id = response.data.id;

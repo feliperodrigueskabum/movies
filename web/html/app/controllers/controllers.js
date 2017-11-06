@@ -50,7 +50,7 @@ app.controller('listagemCtrl',['$scope', '$http', 'multipartForm','$location', f
 	      $scope.excluir = function (id,index,status) {
 	      	$http({
 	      		method: 'GET',
-	      		url: 'cgi-local/listagem.cgi',
+	      		url: '../cgi-local/listagem.cgi',
 	      		params: {funcao: 'excluir', id: id, status: status}
 	      	})
 	      	.then(function successCallback(response) {
